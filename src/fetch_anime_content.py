@@ -66,7 +66,7 @@ if __name__ == "__main__":
         {
             "mal_id": content.mal_id,
             "title": content.title,
-            "local_src": f"anime-selector/anime_images/{content.mal_id}{get_image_extension(content.image_url)}"
+            "local_src": f"anime_images/{content.mal_id}{get_image_extension(content.image_url)}"
         }
         for content in anime_contents
     ]
