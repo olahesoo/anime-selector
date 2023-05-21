@@ -34,7 +34,6 @@ function compare(first: string, second: string, edges: Set<List<string>>): numbe
     return 0
 }
 
-// all comparisons, random order, random left/right
 function get_comparisons(anime_list: AnimeContent[]): List<List<AnimeContent>> {
     let comparisons: List<List<AnimeContent>> = List()
     for (let i = 0; i < anime_list.length; i++) {
