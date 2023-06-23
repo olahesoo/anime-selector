@@ -3,8 +3,14 @@ from fetch_anime_content import AnimeContent, get_mal_id_from_url, get_anime_con
 
 
 class FetchAnimeContent(unittest.TestCase):
-    def test_get_mal_id_from_url(self):
+    def test_get_mal_id_from_full_url(self):
         mal_url = "https://myanimelist.net/anime/30/Neon_Genesis_Evangelion"
+        expected_id = "30"
+        actual_id = get_mal_id_from_url(mal_url)
+        self.assertEqual(expected_id, actual_id)
+
+    def test_get_mal_id_from_partial_url(self):
+        mal_url = "https://myanimelist.net/anime/30"
         expected_id = "30"
         actual_id = get_mal_id_from_url(mal_url)
         self.assertEqual(expected_id, actual_id)

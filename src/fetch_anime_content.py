@@ -2,13 +2,13 @@ import json
 import os
 import re
 from dataclasses import dataclass
-from lxml import etree
 
 import requests
+from lxml import etree
 
 
 def get_mal_id_from_url(mal_url: str) -> str:
-    mal_id = re.match(".*anime/(?P<anime_id>\\d+)/.*", mal_url)["anime_id"]
+    mal_id = re.match(".*anime/(?P<anime_id>\\d+)(/.*|$)", mal_url)["anime_id"]
     return mal_id
 
 
@@ -52,10 +52,11 @@ def download_image(anime_content: AnimeContent) -> None:
 
 
 if __name__ == "__main__":
-    anime_lists = [filename for filename in os.listdir("static") if filename.startswith("anime-list-")]
+    anime_lists = [filename for filename in os.listdir("static") if filename.startswith("anime_list_")]
     latest_list = max(anime_lists)
-    with open (f"static/{latest_list}") as anime_list:
-        anime_urls = [url.strip() for url in anime_list.readlines()]
+    with open(f"static/{latest_list}") as anime_list:
+        anime_ids = [anime_id.strip() for anime_id in anime_list.readlines()]
+        anime_urls = [f"https://myanimelist.net/anime/{anime_id}" for anime_id in anime_ids]
     anime_contents = [get_anime_content(anime_url) for anime_url in anime_urls]
     mal_ids = [content.mal_id for content in anime_contents]
     if len(set(mal_ids)) != len(mal_ids):
