@@ -1,5 +1,6 @@
 .AnimeListItem {
     border: solid;
     background: white;
-    height: 50px
+    height: 50px;
+    cursor: grab;
 }

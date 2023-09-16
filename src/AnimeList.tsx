@@ -3,6 +3,7 @@ import {AnimeContent} from "./App";
 import {DraggableCore} from "react-draggable"
 import "./AnimeList.css"
 import {useRef} from "react";
+import {DragHandle} from "@mui/icons-material";
 
 
 type AnimeListElementProps = {
@@ -23,6 +24,7 @@ function AnimeListElement({anime_content, change_position}: AnimeListElementProp
         >
             <div ref={nodeRef}>
                 <ListItem className="AnimeListItem">
+                    <DragHandle />
                     <ListItemAvatar>
                         <Avatar src={process.env.PUBLIC_URL + '/' + anime_content.local_src} variant="square"/>
                     </ListItemAvatar>
