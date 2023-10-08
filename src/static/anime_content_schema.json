@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Anime content",
+  "description": "Array of anime descriptions",
+  "type": "array",
+  "properties": {
+    "mal_id": "string",
+    "local_src": "string",
+    "title": "string"
+  }
+}
