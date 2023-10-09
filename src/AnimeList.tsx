@@ -16,7 +16,7 @@ function AnimeListElement({anime_content, change_position}: AnimeListElementProp
     return (
         <DraggableCore
             nodeRef={nodeRef}
-            onDrag={(e, data) => {
+            onDrag={(_, data) => {
                 console.log(data)
                 change_position(data.deltaY / 50)
             }}
@@ -26,7 +26,7 @@ function AnimeListElement({anime_content, change_position}: AnimeListElementProp
                 <ListItem className="AnimeListItem">
                     <DragHandle />
                     <ListItemAvatar>
-                        <Avatar src={process.env.PUBLIC_URL + '/' + anime_content.local_src} variant="square"/>
+                        <Avatar className="AnimeListAvatar" src={process.env.PUBLIC_URL + '/' + anime_content.local_src} variant="square"/>
                     </ListItemAvatar>
                     {anime_content.title}
                 </ListItem>

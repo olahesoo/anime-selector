@@ -1,6 +1,10 @@
 .AnimeListItem {
     border: solid;
-    background: white;
+    background: transparent;
     height: 50px;
     cursor: grab;
+}
+
+.AnimeListAvatar {
+    z-index: -1;
 }
