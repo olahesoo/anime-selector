@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/anime-selector/static/css/main.0fd9a088.css",
-    "main.js": "/anime-selector/static/js/main.5e5963e2.js",
+    "main.js": "/anime-selector/static/js/main.efe7dc52.js",
     "static/js/787.7de63f5f.chunk.js": "/anime-selector/static/js/787.7de63f5f.chunk.js",
     "index.html": "/anime-selector/index.html",
     "main.0fd9a088.css.map": "/anime-selector/static/css/main.0fd9a088.css.map",
-    "main.5e5963e2.js.map": "/anime-selector/static/js/main.5e5963e2.js.map",
+    "main.efe7dc52.js.map": "/anime-selector/static/js/main.efe7dc52.js.map",
     "787.7de63f5f.chunk.js.map": "/anime-selector/static/js/787.7de63f5f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0fd9a088.css",
-    "static/js/main.5e5963e2.js"
+    "static/js/main.efe7dc52.js"
   ]
 }
