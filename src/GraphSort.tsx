@@ -1,7 +1,7 @@
 import {List, Set} from "immutable"
 import {useState} from "react";
 import Comparer from "./Comparer";
-import {AnimeContent} from "./App";
+import {AnimeContent, SorterProps} from "./App";
 import {LinearProgress} from "@mui/material";
 
 /*
@@ -111,12 +111,6 @@ function update_state_add_edge(state: AnimeSorterState, edge: List<string>): Ani
     }
 }
 
-type AnimeSorterProps = {
-    anime_list: AnimeContent[]
-    set_sorted_list: (sorted_list: AnimeContent[]) => void
-    set_is_sorted: (is_sorted: boolean) => void
-}
-
 type AnimeSorterState = {
     anime_list: List<AnimeContent>
     edges: Set<List<string>>
@@ -126,7 +120,7 @@ type AnimeSorterState = {
     set_is_sorted: (is_sorted: boolean) => void
 }
 
-function GraphSort({anime_list, set_sorted_list, set_is_sorted}: AnimeSorterProps) {
+function GraphSort({anime_list, set_sorted_list, set_is_sorted}: SorterProps) {
     const [internalState, setInternalState] = useState<AnimeSorterState>(
         {
             anime_list: List(anime_list),

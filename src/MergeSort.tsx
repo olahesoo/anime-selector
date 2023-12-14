@@ -1,4 +1,4 @@
-import {AnimeContent} from "./App";
+import {AnimeContent, SorterProps} from "./App";
 import {useState} from "react";
 import Comparer from "./Comparer";
 import {LinearProgress} from "@mui/material";
@@ -97,13 +97,7 @@ function convoluted_merge_sort<T>(list: T[]) {
     })
 }
 
-type MergeSortProps = {
-    anime_list: AnimeContent[]
-    set_sorted_list: (anime_list: AnimeContent[]) => void
-    set_is_sorted: (is_sorted: boolean) => void
-}
-
-function MergeSort({anime_list, set_sorted_list, set_is_sorted}: MergeSortProps) {
+function MergeSort({anime_list, set_sorted_list, set_is_sorted}: SorterProps) {
     const [merge_state, set_merge_state] = useState<MergeState<AnimeContent>>({
         is_sorted: false,
         list: anime_list,
@@ -113,7 +107,7 @@ function MergeSort({anime_list, set_sorted_list, set_is_sorted}: MergeSortProps)
         left_index: 0,
         right_index: 0
     })
-    const [done_compares, set_done_compares] = useState(0)
+    const [compares_count, set_compares_count] = useState(0)
 
     const [left_choice, right_choice] = get_compared_elements(merge_state)
     const [left_new_state, right_new_state] = get_new_states(merge_state)
@@ -123,7 +117,7 @@ function MergeSort({anime_list, set_sorted_list, set_is_sorted}: MergeSortProps)
             <Comparer left_choice={left_choice}
                       right_choice={right_choice}
                       choose_left={() => {
-                          set_done_compares(x => x + 1)
+                          set_compares_count(x => x + 1)
                           if (left_new_state.is_sorted) {
                               set_sorted_list(left_new_state.list)
                               set_is_sorted(true)
@@ -132,7 +126,7 @@ function MergeSort({anime_list, set_sorted_list, set_is_sorted}: MergeSortProps)
                           }
                       }}
                       choose_right={() => {
-                          set_done_compares(x => x + 1)
+                          set_compares_count(x => x + 1)
                           if (right_new_state.is_sorted) {
                               set_sorted_list(right_new_state.list)
                               set_is_sorted(true)
@@ -141,7 +135,7 @@ function MergeSort({anime_list, set_sorted_list, set_is_sorted}: MergeSortProps)
                           }
                       }}/>
             <LinearProgress variant="determinate"
-                            value={done_compares / (anime_list.length * Math.log(anime_list.length)) * 100}/>
+                            value={compares_count / (anime_list.length * Math.log(anime_list.length)) * 100}/>
         </div>
     )
 }
