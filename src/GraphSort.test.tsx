@@ -1,5 +1,5 @@
 import {List, Set} from "immutable"
-import {compare, has_path, get_comparisons, remove_unneeded_comparisons} from "./AnimeSorter";
+import {compare, has_path, get_comparisons, remove_unneeded_comparisons} from "./GraphSort";
 import {AnimeContent} from "./App";
 
 test("has_path", () => {

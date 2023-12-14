@@ -1,10 +1,10 @@
 import {z} from "zod";
 import anime_content from "./static/anime_content.json";
 import AnimeList from "./AnimeList";
-import AnimeSorter from "./AnimeSorter";
 import {useState} from "react";
 import {Button} from "@mui/material";
 import DiscordFormatter from "./DiscordFormatter";
+import MergeSort from "./MergeSort";
 
 const AnimeContentSchema = z.object({
     mal_id: z.string(),
@@ -25,7 +25,7 @@ function App() {
               <AnimeList anime_list={animeList} set_anime_list={setAnimeList}/>
           </div>
           : <div>
-              <AnimeSorter anime_list={animeList} set_sorted_list={setAnimeList} set_is_sorted={setIsSorted}/>
+              <MergeSort anime_list={animeList} set_sorted_list={setAnimeList} set_is_sorted={setIsSorted}/>
           </div>
   );
 }

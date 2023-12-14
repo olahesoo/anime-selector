@@ -126,7 +126,7 @@ type AnimeSorterState = {
     set_is_sorted: (is_sorted: boolean) => void
 }
 
-function AnimeSorter({anime_list, set_sorted_list, set_is_sorted}: AnimeSorterProps) {
+function GraphSort({anime_list, set_sorted_list, set_is_sorted}: AnimeSorterProps) {
     const [internalState, setInternalState] = useState<AnimeSorterState>(
         {
             anime_list: List(anime_list),
@@ -164,5 +164,5 @@ function AnimeSorter({anime_list, set_sorted_list, set_is_sorted}: AnimeSorterPr
     )
 }
 
-export default AnimeSorter
+export default GraphSort
 export {has_path, compare, get_comparisons, randomize_list, remove_unneeded_comparisons}
