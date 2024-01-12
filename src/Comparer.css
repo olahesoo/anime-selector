@@ -1,7 +1,23 @@
 .ChoiceArea {
     display:flex;
-    align-items: baseline;
+    align-items: flex-start;
     justify-content: center;
+}
+
+.LeftChoiceArea {
+    display: flex;
+    justify-content: flex-end;
+    width: 40vw;
+}
+
+.RightChoiceArea {
+    display: flex;
+    justify-content: flex-start;
+    width: 40vw;
+}
+
+.ChoiceButtonGroup {
+    position: fixed;
 }
 
 .ChoiceButton {

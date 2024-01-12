@@ -1,14 +1,9 @@
 .AnimePoster {
-    width: 100px;
-}
-
-.Choice {
-    vertical-align: top;
-    display: inline-block;
     text-align: center;
-    width: 120px;
+    width: 20vw;
+    height: 30vh;
 }
 
-.AnimeTitle {
-    display: block;
+dt {
+    font-weight: bold;
 }

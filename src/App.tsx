@@ -10,10 +10,31 @@ import {HelpOutline} from "@mui/icons-material";
 
 const AnimeContentSchema = z.object({
     mal_id: z.string(),
+    title: z.string(),
+    ranking: z.number(),
+    popularity: z.number(),
+    length: z.string(),
+    release: z.string(),
+    source: z.string(),
+    genres: z.array(z.string()),
+    tags: z.array(z.string()),
     local_src: z.string(),
-    title: z.string()
 })
 type AnimeContent = z.infer<typeof AnimeContentSchema>
+
+const sample_anime_content: AnimeContent = {
+    "mal_id": "none",
+    "title": "none",
+    "ranking": 0,
+    "popularity": 0,
+    "length": "none",
+    "release": "none",
+    "source": "none",
+    "genres": [],
+    "tags": [],
+    "local_src": "none"
+}
+
 const anime_list = AnimeContentSchema.array().parse(anime_content)
 
 type SorterProps = {
@@ -75,5 +96,5 @@ function App() {
 }
 
 export default App;
-export {anime_list}
+export {anime_list, sample_anime_content}
 export type {AnimeContent, SorterProps}

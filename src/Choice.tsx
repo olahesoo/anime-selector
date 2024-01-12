@@ -9,8 +9,34 @@ type ChoiceProps = {
 function Choice({anime_content}: ChoiceProps) {
     return (
         <div className="Choice">
-            <img className="AnimePoster" src={process.env.PUBLIC_URL + '/' + anime_content.local_src} alt=""/>
-            <figcaption className="Animetitle">{anime_content.title}</figcaption>
+            <div className="AnimePoster">
+                <img src={process.env.PUBLIC_URL + '/' + anime_content.local_src} alt=""/>
+            </div>
+            <dl>
+                <dt>Title</dt>
+                <dd>{anime_content.title}</dd>
+
+                <dt>Ranking</dt>
+                <dd>#{anime_content.ranking}</dd>
+
+                <dt>Popularity</dt>
+                <dd>#{anime_content.popularity}</dd>
+
+                <dt>Length</dt>
+                <dd>{anime_content.length}</dd>
+
+                <dt>Release</dt>
+                <dd>{anime_content.release}</dd>
+
+                <dt>Source</dt>
+                <dd>{anime_content.source}</dd>
+
+                <dt>Genres</dt>
+                <dd>{anime_content.genres.join(", ")}</dd>
+
+                <dt>Tags</dt>
+                <dd>{anime_content.tags.join(", ")}</dd>
+            </dl>
         </div>
     )
 }
