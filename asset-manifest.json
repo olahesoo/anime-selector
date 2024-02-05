@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/anime-selector/static/css/main.d667f1c9.css",
-    "main.js": "/anime-selector/static/js/main.8c12a7a5.js",
-    "static/js/787.7de63f5f.chunk.js": "/anime-selector/static/js/787.7de63f5f.chunk.js",
+    "main.css": "/anime-selector/static/css/main.4abe3ce3.css",
+    "main.js": "/anime-selector/static/js/main.85812343.js",
+    "static/js/787.a1b654cb.chunk.js": "/anime-selector/static/js/787.a1b654cb.chunk.js",
     "index.html": "/anime-selector/index.html",
-    "main.d667f1c9.css.map": "/anime-selector/static/css/main.d667f1c9.css.map",
-    "main.8c12a7a5.js.map": "/anime-selector/static/js/main.8c12a7a5.js.map",
-    "787.7de63f5f.chunk.js.map": "/anime-selector/static/js/787.7de63f5f.chunk.js.map"
+    "main.4abe3ce3.css.map": "/anime-selector/static/css/main.4abe3ce3.css.map",
+    "main.85812343.js.map": "/anime-selector/static/js/main.85812343.js.map",
+    "787.a1b654cb.chunk.js.map": "/anime-selector/static/js/787.a1b654cb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d667f1c9.css",
-    "static/js/main.8c12a7a5.js"
+    "static/css/main.4abe3ce3.css",
+    "static/js/main.85812343.js"
   ]
 }
