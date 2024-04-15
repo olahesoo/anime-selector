@@ -4,6 +4,7 @@ import {DraggableCore} from "react-draggable"
 import "./AnimeList.css"
 import {useRef} from "react";
 import {DragHandle} from "@mui/icons-material";
+import {List as ImmutableList} from "immutable"
 
 
 type AnimeListElementProps = {
@@ -24,9 +25,10 @@ function AnimeListElement({anime_content, change_position}: AnimeListElementProp
         >
             <div ref={nodeRef}>
                 <ListItem className="AnimeListItem">
-                    <DragHandle />
+                    <DragHandle/>
                     <ListItemAvatar>
-                        <Avatar className="AnimeListAvatar" src={process.env.PUBLIC_URL + '/' + anime_content.local_src} variant="square"/>
+                        <Avatar className="AnimeListAvatar" src={process.env.PUBLIC_URL + '/' + anime_content.local_src}
+                                variant="square"/>
                     </ListItemAvatar>
                     {anime_content.title}
                 </ListItem>
@@ -35,22 +37,19 @@ function AnimeListElement({anime_content, change_position}: AnimeListElementProp
     )
 }
 
-function move_element<T>(list: readonly T[], index: number, delta: number): T[] {
-    const mutable_list_copy = [...list]
-    if (index < 0 || index >= list.length) return mutable_list_copy
+function move_element<T>(list: ImmutableList<T>, index: number, delta: number): ImmutableList<T> {
+    if (index < 0 || index >= list.size) return list
     let final_index = index + delta
     final_index = Math.max(final_index, 0)
-    final_index = Math.min(final_index, list.length - 1)
-    const element = list.at(index)
+    final_index = Math.min(final_index, list.size - 1)
+    const element = list.get(index)
     if (!element) throw Error(`No element found in list ${list} at position ${index}`)
-    mutable_list_copy.splice(index, 1)
-    mutable_list_copy.splice(final_index, 0, element)
-    return mutable_list_copy
+    return list.delete(index).insert(final_index, element)
 }
 
 type AnimeListProps = {
-    anime_list: AnimeContent[]
-    set_anime_list: (list: AnimeContent[]) => void
+    anime_list: ImmutableList<AnimeContent>
+    set_anime_list: (list: ImmutableList<AnimeContent>) => void
 }
 
 function AnimeList({anime_list, set_anime_list}: AnimeListProps) {
