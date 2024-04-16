@@ -17,6 +17,8 @@ test("cosine_similarity", () => {
 test("cosine_similarity_sum", () => {
     expect(cosine_similarity_sum(List(["a"]), List([List(["b"])]))).toStrictEqual(0)
     expect(cosine_similarity_sum(List(["a"]), List([List(["a"])]))).toStrictEqual(1)
+    expect(cosine_similarity_sum(List.of("a", "b"), List.of(List.of("a", "b")))).toBeCloseTo(1)
+    expect(cosine_similarity_sum(List.of("a", "b"), List.of(List.of("b", "a")))).toBeCloseTo(1)
     expect(cosine_similarity_sum(List(["a"]), List([List(["a"]), List(["b"]), List(["a", "b"])]))).toStrictEqual(1 + 1 / Math.sqrt(2))
 })
 
