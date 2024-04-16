@@ -103,7 +103,7 @@ function get_max_cosine_similarity_sum(nominations: Set<AnimeNomination>): numbe
 }
 
 function get_priority_sum(nominations: Set<AnimeNomination>): number {
-    return nominations.map(n => n.priority).reduce((acc, p) => acc + p, 0)
+    return ImmutableList(nominations).map(n => n.priority).reduce((acc, p) => acc + p, 0)
 }
 
 function get_possibilities(nominations: Set<AnimeNomination>, count: number): Set<NominationSet> {
@@ -266,5 +266,5 @@ function NominationExporter({nominations}: NominationExporterProps) {
 }
 
 export default NominationChecker
-export {parse_anime_nominations}
+export {parse_anime_nominations, get_priority_sum}
 export type {AnimeNomination}
