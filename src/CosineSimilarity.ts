@@ -2,7 +2,7 @@ import {List, Set} from 'immutable'
 import {range} from "lodash";
 
 function cosine_similarity(first: List<string>, second: List<string>): number {
-    if (first.size == 0 || second.size == 0) {
+    if (first.size === 0 || second.size === 0) {
         return 0
     }
     const first_terms = Set(first)
@@ -29,7 +29,7 @@ function get_combinations<T>(elements: List<T>, count: number): Set<Set<T>> {
     if (count < 1 || count > elements.size) {
         throw Error(`Incorrect combinations, elements: ${elements}, count: ${count}`)
     }
-    if (count == 1) return Set(elements.map(e => Set([e])))
+    if (count === 1) return Set(elements.map(e => Set([e])))
     return range(0, elements.size).map(index => {
         return get_combinations(elements.delete(index), count - 1).map(combination_part => {
             const current_element = elements.get(index)

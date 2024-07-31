@@ -173,7 +173,7 @@ type MaxNominationsSelectorProps = {
 function MaxNominationsSelector({max_nominations, set_max_nominations}: MaxNominationsSelectorProps) {
     return (
         <FormControl>
-            <FormLabel id="max-nominations-selector-label">Show possibilities with up to n nominations</FormLabel>
+            <FormLabel id="max-nominations-selector-label">Show options with up to n nominations</FormLabel>
             <RadioGroup
                 row
                 aria-labelledby="max-nominations-selector-label"
@@ -210,7 +210,7 @@ function PossibilitiesList({nominations}: PossibilitiesListProps) {
             }}/>
             <FormGroup>
                 <FormControlLabel
-                    label="Use only options with exactly n nominations"
+                    label="Show only options with exactly n nominations"
                     control={<Checkbox checked={strict_shown_count}
                                        onChange={e => set_strict_shown_count(e.target.checked)}/>}
                 />
