@@ -39,9 +39,14 @@ function get_combinations<T>(elements: List<T>, count: number): Set<Set<T>> {
     }).reduce((acc, s) => acc.union(s), Set())
 }
 
+function get_multiple_combinations<T>(elements: List<T>, counts: List<number>): Set<Set<T>> {
+    return counts.map(c => get_combinations(elements, c)).reduce((acc, s) => acc.union(s), Set())
+}
+
 export {
     cosine_similarity,
     cosine_similarity_sum,
     get_combinations,
+    get_multiple_combinations,
     max_cosine_similarity_sum
 }
