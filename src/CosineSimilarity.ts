@@ -30,8 +30,8 @@ function get_combinations<T>(elements: List<T>, count: number): Set<Set<T>> {
         throw Error(`Incorrect combinations, elements: ${elements}, count: ${count}`)
     }
     if (count === 1) return Set(elements.map(e => Set([e])))
-    return range(0, elements.size).map(index => {
-        return get_combinations(elements.delete(index), count - 1).map(combination_part => {
+    return range(0, elements.size - count + 1).map(index => {
+        return get_combinations(elements.slice(index + 1), count - 1).map(combination_part => {
             const current_element = elements.get(index)
             if (current_element === undefined) throw Error(`List ${elements} does not have index ${index}`)
             return combination_part.add(current_element)
