@@ -188,7 +188,7 @@ function collect_up_to<T>(
     let new_disallowed = ImmutableList<T>()
     const remaining = count - existing_allowed_suitable.size
     let collected = 0
-    let {value: next_value, done: done} = generator.next()
+    let {value: next_value, done} = generator.next()
     while (!done) {
         if (is_allowed(next_value)) {
             new_allowed = new_allowed.push(next_value)
@@ -206,7 +206,7 @@ function collect_up_to<T>(
         } else {
             new_disallowed = new_disallowed.push(next_value)
         }
-        ({value: next_value, done: done} = generator.next())
+        ({value: next_value, done} = generator.next())
     }
     return {
         options: {
@@ -224,6 +224,12 @@ type PossibilitiesListProps = {
     set_allowed: (a: ImmutableList<Set<AnimeNomination>>) => void
     disallowed: ImmutableList<Set<AnimeNomination>>
     set_disallowed: (d: ImmutableList<Set<AnimeNomination>>) => void
+    max_nominations: number,
+    set_max_nominations: (n: number) => void
+    max_shown_count: number
+    set_max_shown_count: (f: ((c: number) => number) | number) => void
+    strict_shown_count: boolean
+    set_strict_shown_count: (b: boolean) => void
 }
 
 function PossibilitiesList({
@@ -233,11 +239,14 @@ function PossibilitiesList({
                                allowed,
                                set_allowed,
                                disallowed,
-                               set_disallowed
+                               set_disallowed,
+                               max_nominations,
+                               set_max_nominations,
+                               max_shown_count,
+                               set_max_shown_count,
+                               strict_shown_count,
+                               set_strict_shown_count,
                            }: PossibilitiesListProps) {
-    const [max_nominations, set_max_nominations] = useState(3)
-    const [max_shown_count, set_max_shown_count] = useState(10)
-    const [strict_shown_count, set_strict_shown_count] = useState(false)
     return (
         <Box>
             <MaxNominationsSelector max_nominations={max_nominations} set_max_nominations={(max_nominations) => {
@@ -301,13 +310,25 @@ function NominationChecker({return_to_main}: NominationCheckerProps) {
     const [generator_has_remaining, set_generator_has_remaining] = useState(true)
     const [allowed, set_allowed] = useState(ImmutableList<Set<AnimeNomination>>())
     const [disallowed, set_disallowed] = useState(ImmutableList<Set<AnimeNomination>>())
+    const [max_shown_count, set_max_shown_count] = useState(10)
+    const [max_nominations, set_max_nominations] = useState(6)
+    const [strict_shown_count, set_strict_shown_count] = useState(false)
 
     function update_nominations(n: ImmutableList<AnimeNomination>) {
         set_nominations(n)
-        set_combinations_generator(create_combinations_generator(Set(n)))
-        set_generator_has_remaining(true)
-        set_allowed(ImmutableList<Set<AnimeNomination>>())
-        set_disallowed(ImmutableList<Set<AnimeNomination>>())
+        const combinations_generator = create_combinations_generator(Set(n))
+        const {
+            options: new_options,
+            remaining: has_remaining
+        } = collect_up_to(10, {
+            allowed: ImmutableList<Set<AnimeNomination>>(),
+            disallowed: ImmutableList<Set<AnimeNomination>>(),
+        }, combinations_generator, (ns => get_max_cosine_similarity_sum(ns) <= ns.size / 3), (ns => ns.size <= max_nominations && (!strict_shown_count || ns.size === max_nominations)))
+        set_allowed(new_options.allowed)
+        set_disallowed(new_options.disallowed)
+        set_generator_has_remaining(has_remaining)
+        set_combinations_generator(combinations_generator)
+        set_max_shown_count(10)
     }
 
     return (
@@ -342,7 +363,13 @@ function NominationChecker({return_to_main}: NominationCheckerProps) {
                                allowed={allowed}
                                set_allowed={set_allowed}
                                disallowed={disallowed}
+                               max_nominations={max_nominations}
+                               set_max_nominations={set_max_nominations}
                                set_disallowed={set_disallowed}
+                               max_shown_count={max_shown_count}
+                               set_max_shown_count={set_max_shown_count}
+                               strict_shown_count={strict_shown_count}
+                               set_strict_shown_count={set_strict_shown_count}
             />
         </Box>
     )
